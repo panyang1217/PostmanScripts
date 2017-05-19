@@ -151,6 +151,23 @@
 			"response": []
 		},
 		{
+			"name": "17. 重新检测体质",
+			"request": {
+				"url": "http://{{url}}/api/App/FilingTcmExam?key=785566",
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "24. 获取日期-月份数据-酸痛评估历史页面",
 			"event": [
 				{
