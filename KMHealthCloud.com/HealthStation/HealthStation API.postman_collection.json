@@ -1,0 +1,183 @@
+{
+	"variables": [],
+	"info": {
+		"name": "HealthStation API",
+		"_postman_id": "cb7d7021-29fb-d316-ccbe-7d67a7098de6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登陆",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"登陆状态\"] = jsonData.Msg === \"操作成功\";",
+							"",
+							"postman.setEnvironmentVariable(\"token\", jsonData.Data.Token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://{{url}}/api/App/Login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Mobile\": \"13928485821\",\r\n  \"Password\": \"123456\",\r\n  \"UserType\": \"string\",\r\n  \"UserToken\": \"string\",\r\n  \"OrgID\": \"string\",\r\n  \"AppType\": \"string\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "2. 获取用户分配技师",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"操作状态\"] = jsonData.Status !== -1;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://{{url}}/api/App/GetAllotTechnician",
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4. 获取当前用户的推送手法列表",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"调用状态\"] = jsonData.Success === true;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://{{url}}/api/App/MpOrderList?productTypeID=3b9217fb-1afe-460e-8c0a-75ad98966014",
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "5. 根据按摩程序ID获取手法明细",
+			"request": {
+				"url": "http://{{url}}/api/App/GetCustomProgramById?MpId=123",
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "10. 获取健康计划",
+			"request": {
+				"url": "http://{{url}}/api/App/GetHealthPlan?BeginDate=2017-3-4&EndDate=2017-4-8",
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "16. 获取中医体质",
+			"request": {
+				"url": "http://{{url}}/api/App/GetTCMConstitutional",
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "24. 获取日期-月份数据-酸痛评估历史页面",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"调用状态\"] = jsonData.Success === true;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://{{url}}/api/App/GetPainTestDateList?request.year=2017&request.month=4",
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
